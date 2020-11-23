@@ -1,0 +1,14 @@
+package com.mygallery.domain;
+
+import lombok.Data;
+
+@Data
+public class SaveFile {
+	
+	// 기본키
+	private int fnum;
+	
+	// 외래키
+	private int gnum;
+	
+}

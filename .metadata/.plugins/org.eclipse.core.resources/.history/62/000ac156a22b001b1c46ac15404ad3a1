@@ -1,0 +1,6 @@
+package com.mygallery.mapper;
+
+public interface EventMapper {
+	
+	public void insert();
+}

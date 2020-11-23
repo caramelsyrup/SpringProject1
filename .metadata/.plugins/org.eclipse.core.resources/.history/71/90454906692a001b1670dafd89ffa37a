@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.mygallery.mapper.GalleryMapper">
+        <!-- 검색 WHERE절  -->
+        	<sql id="search">
+        		<where>
+        		<!-- 제작년도로 검색 -->
+        			<if test="word != null and (field eq 'artdate'.toString())">
+        				artdate LIKE '%{word}%'
+        			</if>
+        		<!-- 작가이름 검색 -->	
+        			<if test="word != null and (field eq 'artwriter'.toString())">
+        				artwriter LIKE '%{word}%'
+        			</if>
+        		</where>
+        	</sql>
+        <!-- 추가하기 -->
+        	<select id="insert">
+        		<![CDATA[
+        		INSERT INTO gallery_board (gnum,arttitle,artwriter,artdate,artfilename) VALUES(gallery_board_seq.nextval,#{arttitle},#{artwriter},#{artdate},#{artfilename})
+        		]]>
+        	</select>
+        	
+        <!-- 전체조회 -->
+        	<select id="getList" resultType="com.mygallery.domain.GalleryDTO">
+        		SELECT * FROM gallery_board
+        	</select>
+        	
+        <!-- 상세조회 -->
+        	<select id="get" parameterType="Integer" resultType="com.mygallery.domain.GalleryDTO">
+        		SELECT * FROM gallery_board WHERE gnum=#{gnum}
+        	</select>
+        <!-- 항목수정 -->
+        	<update id="update" parameterType="com.mygallery.domain.GalleryDTO">
+        		UPDATE gallery_board SET arttitle=#{arttitle},artwriter=#{artwriter},artdate=#{artdate} WHERE gnum=#{gnum}
+        	</update>			
+        <!-- 항목삭제 -->
+        	<delete id="delete" parameterType="Integer">
+        		DELETE FROM gallery_board WHERE gnum=#{gnum}
+        	</delete>
+        	
+        <!-- 항목 전체 개수 , 검색 조건이 추가된 -->
+        	<select id="getCount" parameterType="HashMap" resultType="Integer">
+        		SELECT count(*) FROM gallery_board <include refid="search"/>
+        	</select>	
+        </mapper>

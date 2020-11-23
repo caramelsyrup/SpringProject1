@@ -1,0 +1,302 @@
+var page=1;
+// 일정 정규식 표현
+var eventDateExp = /^[1-2]{1}[0-9]{3}\/[0-1]{1}[1-9]{1}\/[0-3]{1}[0-9]{1}$/;
+$(function(){
+	// 리스트 보여주는 함수
+		getList(page);
+		// top버튼 관련 함수
+		// 버튼을 눌렸을떄, 스크롤 올라갈때 효과
+		$('#goTop').click(function(){
+			$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+			return false;
+		});
+		//행사 게시물 추가폼
+		$('#btnEventInsertForm').on('click',()=>{
+			var	url = "/events/insertForm";
+			window.open(url,"",'width=800, height=700, top =200, left = 200, menubars=no, scrollbars=auto, location=no');
+		});
+		// 행사 게시물 추가하기 버튼
+		$('#btnDoInsert').on('click',()=>{
+
+			if($("#ename").val().trim()==""){
+				alert('Fill out!');
+				$("#ename").focus();
+				return false;
+			}
+			if($("#ehost").val().trim()==""){
+				alert('Fill out!');
+				$("#ehost").focus();
+				return false;
+			}
+			if(!$("#estartD").val().match(eventDateExp)){
+				alert('Check your input!');
+				$("#estartD").val("");
+				$("#estartD").focus();
+				return false;
+			}
+			if(!$("#eendD").val().match(eventDateExp)){
+				alert('Check your input!');
+				$("#eendD").val("");
+				$("#eendD").focus();
+				return false;
+			}
+			if($("#eloca").val().trim()==""){
+				alert('Fill out!');
+				$("#eloca").focus();
+				return false;
+			}
+			if($("#edesc").val().trim()==""){
+				alert('Fill out!');
+				$("#edesc").focus();
+				return false;
+			}
+			if($("#uploadFile").val().trim()==""){
+				alert('Fill out!');
+				return false;
+			}
+			doInsert();
+		});
+		// 이벤트 게시물 삭제하기 버튼
+		$("#btnDeleteEven").on("click", function(){
+			var judge = confirm("It will be deleted");
+			if(judge){
+				deleteEven();
+				opener.document.location.reload();
+			}else{
+			}
+		});
+		// 이벤트 게시물 수정하기 폼 띄우기
+		$("#btnUpdateEven").click(function(){
+			var ecode = $("#ecode").val();
+			var	url = "/events/updateForm/"+ecode;
+			window.open(url,"",'width=1000, height=600, top =200, left = 200, menubars=no, scrollbars=auto, location=no');
+		});
+		// 행사 게시물 수정 버튼
+		$("#btnDoUpdate").click(function(){
+			if($("#uename").val().trim()==""){
+				alert('Fill out!');
+				$("#uename").focus();
+				return false;
+			}
+			if($("#uehost").val().trim()==""){
+				alert('Fill out!');
+				$("#uehost").focus();
+				return false;
+			}
+			if(!$("#uestartD").val().match(eventDateExp)){
+				alert('Check your input!');
+				$("#uestartD").val("");
+				$("#uestartD").focus();
+				return false;
+			}
+			if(!$("#ueendD").val().match(eventDateExp)){
+				alert('Check your input!');
+				$("#ueendD").val("");
+				$("#ueendD").focus();
+				return false;
+			}
+			if($("#ueloca").val().trim()==""){
+				alert('Fill out!');
+				$("#ueloca").focus();
+				return false;
+			}
+			if($("#uedesc").val().trim()==""){
+				alert('Fill out!');
+				$("#uedesc").focus();
+				return false;
+			}
+			if($("#uuploadFile").val().trim()==""){
+				alert('Fill out!');
+				return false;
+			}
+			exeTest();
+		});
+		// 행사 예약하기 버튼
+		$("#btnAttend").click(function(){
+			if($("#username").val()==""){
+				alert('로그인 하세요!');
+				return false;
+			}
+			// 예약 체크
+			if(checkAttend($("#username").val(),$("#ecode").val())=="no"){
+				alert('Already had.');
+			}else{
+				// 예약하는 함수 호출 비동기
+				
+			}
+			
+		});
+		
+		
+});	// function()
+
+	// 스크롤 내려갈때, top 보이도록
+	$(window).scroll(function(){
+		if($(this).scrollTop()>200){
+			$('#goTop').fadeIn();
+		}else{
+			$('#goTop').fadeOut();
+		}
+	});
+	// 게시물 추가하기 버튼 기능 함수
+	function doInsert(){
+		var form = $("#einsertForm")[0];
+		// FormData 객체 생성
+		var formData = new FormData(form);
+		// ajax
+		$.ajax({
+			type:"POST",
+			enctype:"multipart/form-data",
+			url:"/events/upload",
+			data:formData,
+			processData:false,
+			contentType:false,
+			cache:false,
+			timeout:600000
+		})
+		.done(function(resp){
+			if(resp==1){
+				opener.document.location.reload();
+				self.close();
+			}
+		})
+		.fail(function(e){
+			alert(e);
+		});
+	}
+	
+	//스크롤이 내려갈떄
+	$(window).scroll(function(){
+		// 스크롤 최하단에서 30px정도 오면 새로운 리스트를 부르도록, 리스트를 조회, page를 그다음에 증가
+		if($(window).scrollTop()+30 >= $(document).height()-$(window).height()){
+			page++;
+			getList(page);
+		}
+	});
+	
+	// 리스보여주기. 페이징
+	// 페이지를 부르는 아약스 사용 함수
+	function getList(page){
+		$.ajax({
+			type:"POST",
+			url:"/events/elist",
+			data:{"page":page}
+		})
+		.done(function(resp){
+			var listContent ="";
+			$.each(resp.elist,function(key,val){
+				listContent +=
+					`<div class="col-md-4">
+			          <div class="card mb-4 shadow-sm">
+			          	<img src="/resources/img/${val.efilename}" class="img-thumbnail" alt="Responsive image" style="height: 500px; width: 100%;">
+			            <div class="card-body">
+			              <p class="card-text">
+			              	<span class="badge badge-info">Info</span><br>
+			              		<b>${val.ename}</b>
+			              </p>
+			              <div class="d-flex justify-content-between align-items-center">
+			               <div class="btn-group">
+			          		<button type="button" class="btn btn-sm btn-outline-secondary" onclick='viewEvent("${val.ecode}")'>Detail</button>
+			        	   </div>
+			               <small class="text-muted">${val.eloca}</small>
+			              </div>
+			            </div>
+			          </div>
+		       		 </div>
+		       		 `;		       		  		       		 
+			});
+			$("#row").append(listContent);
+		})
+		.fail(function(e){
+			alert('error : '+e);
+		});
+	}
+	// 상세보기 폼 화면 띄우는 함수
+	function viewEvent(ecode){
+		// 팝업창 주소
+		var url = "/events/detailPic/"+ecode;
+		// 마우스 커서 위치에 팝업창 띄우기
+		var event = window.event;
+		var Xcoor = event.screenX-100;
+		var Ycoor = event.screenY-300;
+		// 팝업창 띄우기
+		window.open(url,"",'width=850, height=500, top ='+Ycoor+', left = '+Xcoor+', menubars=no, scrollbars=auto, location=no');
+	}
+	// 게시물 수정하기 ajax으로
+	function exeTest(){
+		var form = $("#eUpdateForm")[0];
+		// FormData 객체 생성
+		var formData = new FormData(form);
+		
+		$.ajax({
+			type:"POST",
+			enctype:"multipart/form-data",
+			url:"/events/update",
+			data:formData,
+			processData:false,
+			contentType:false,
+			cache:false,
+			timeout:600000,
+			success: function(resp){
+				if($.type(resp)==="string"){
+					alert("Done");
+					self.close();
+					}
+			},
+			error: function(e){
+				alert("Error");
+			}
+		});
+	}
+	// 게시물 삭제하기
+	function deleteEven(){
+		var ecode1 = $("#ecode").val();
+		$.ajax({
+			type:"DELETE",
+			url:"/events/delete/"+ecode1
+		})
+		.done(function(resp){
+			alert("Done");
+			self.close();
+		})
+		.fail(function(e){
+			alert("error");
+		})
+	}
+	
+	// 예약전 확인
+	function checkAttend(username,ecode){
+		$.ajax({
+			type:"POST",
+			url:"/events/checkAt",
+			data:{"username":username,"ecode":ecode}
+		})
+		.done(function(resp){
+			if(resp==0){
+				doAttend($("#username").val(),$("#ecode").val());
+			}else{
+			}
+			
+		})
+		.fail(function(e){
+			alert(e);
+		})
+	}
+	
+	// 예약하기 
+	function doAttend(username,ecode){
+		$.ajax({
+			type:"POST",
+			url:"/events/attend",
+			data:{"username":username,"ecode":ecode}
+		})
+		.done(function(resp){
+			alert('Done.');
+			self.close();
+		})
+		.fail(function(e){
+			alert(e);
+		})
+	
+	}
+

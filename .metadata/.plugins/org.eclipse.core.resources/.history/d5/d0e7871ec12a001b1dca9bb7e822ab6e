@@ -1,0 +1,73 @@
+package com.mygallery.service;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.mygallery.domain.GalleryDTO;
+import com.mygallery.mapper.GalleryMapper;
+
+import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
+
+@Log
+@AllArgsConstructor
+@Service
+public class GalleryServiceImpl implements GalleryService {
+	
+	private GalleryMapper gmapper;
+	
+	
+	@Override
+	public void insert(GalleryDTO galleryDTO) {
+		// TODO Auto-generated method stub
+		log.info("Service.Insert.."+galleryDTO);
+		gmapper.insert(galleryDTO);	//gallery테이블에 입력
+	}
+	
+	@Override
+	public List<GalleryDTO> getList() {
+		return gmapper.getList();
+	}
+
+
+	@Override
+	public GalleryDTO get(int gnum) {
+		// 갤러리 한 항목 빈객체
+		GalleryDTO dto = gmapper.get(gnum);
+		return dto;
+	}
+
+	@Override
+	public void update(GalleryDTO galleryDTO) {
+		gmapper.update(galleryDTO);
+		
+	}
+
+	@Override
+	public void delete(int gnum) {
+		gmapper.delete(gnum);
+	}
+	
+	// 게시물 총 개수, 검색등의 다른 기능 추가한 개수세기 가능
+	@Override
+	public int getCount(HashMap<String, Object> hm) {
+		
+		return gmapper.getCount(hm);
+	}
+	
+	
+	@Override
+	public List<GalleryDTO> plist(HashMap<String, Object> hm) {
+		
+		return gmapper.plist(hm);
+	}
+
+
+
+
+
+
+}

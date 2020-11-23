@@ -1,0 +1,16 @@
+package com.mygallery.repository;
+
+import java.util.List;
+
+import com.mygallery.domain.AddressDTO;
+import com.mygallery.domain.MemberDTO;
+
+public interface MemberDAO {
+	
+	
+	public void register(MemberDTO memberDTO);
+	public void registAuth(MemberDTO memberDTO);
+	
+	public List<AddressDTO>Addresslist(String dong);
+	
+}

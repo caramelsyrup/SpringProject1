@@ -1,0 +1,21 @@
+package com.mygallery.domain;
+
+import java.util.Date;
+import java.util.List;
+
+import lombok.Data;
+
+@Data
+public class MemberDTO {
+	
+	private String username;	// 유저 아이디
+	private String password;	// 유저 비밀번호
+	private String membername;	// 회원 실제이름
+	private int age;			// 나이
+	private String address;		// 주소
+	private String email;		// 이메일
+	private Date regdate;		// 가입일
+	private Boolean enabled;	// 여부
+	private List<AuthVO> authList;	// 다중권한 가능. 1대n 관계.
+	
+}

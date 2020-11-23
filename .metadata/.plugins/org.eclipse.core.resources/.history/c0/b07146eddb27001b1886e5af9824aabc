@@ -1,0 +1,8 @@
+package com.mygallery.mapper;
+
+public interface HomeMapper {
+	
+	
+	//로그인 판단
+	
+}

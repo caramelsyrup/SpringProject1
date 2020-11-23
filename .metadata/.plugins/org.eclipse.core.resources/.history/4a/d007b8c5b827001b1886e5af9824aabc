@@ -1,0 +1,14 @@
+package com.mygallery.service;
+
+import com.mygallery.domain.MemberDTO;
+
+public interface MemberService {
+	
+	// 아이디 중복 체크
+	public String idcheck(String userID);
+	
+	// 회원 가입
+	public void register(MemberDTO memberDTO);
+	public void registAuth(MemberDTO memberDTO);
+
+}

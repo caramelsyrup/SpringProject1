@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/resources/includes/header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GalleryList</title>
+<style>
+     #goTop {
+       position: fixed;
+       right: 1%;
+       bottom: 50px;
+       display: none;
+     }
+</style>
+</head>
+<body class="d-flex flex-column h-100">
+<main role="main">
+	<section class="jumbotron text-center" style="background-color: #FAEBD7">
+     <div class="container">
+      <h1 class="mt-5">Gallery View</h1>
+      <p class="lead text-muted">Gallery for Masterpiece</p>
+      <p>
+        <c:if test="${member.auth==1}">
+    		<h4><a href="/gallery/insertGalleryForm" class="badge badge-light">Insert Art</a></h4>
+    	</c:if>
+        <button id="goTop" class="btn btn-outline-primary" >Top</button>
+      </p>
+      <div>X
+      <div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <select class="custom-select d-block w-100" id="field" name="field">
+		      <option class="dropdown-item" value="artwriter">Art Writer</option>
+		      <option class="dropdown-item" value="artdate">Art Date</option>
+			</select>
+		  </div>
+		  <div class="col-md-3 mb-3">
+            <input type="text" class="form-control" id="word" name="word" required="required">
+          </div>
+		  <button type="button" id="btnSearchGallery" class="btn btn-outline-success">Search</button>
+	  </div>
+   </div>
+   </div>
+  </section>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row" id="row">
+      </div>
+    </div>
+  </div>
+<hr class="featurette-divider">
+</main>
+<script src="/resources/js/gallery.js"></script>
+<footer class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer>
+</body>
+</html>

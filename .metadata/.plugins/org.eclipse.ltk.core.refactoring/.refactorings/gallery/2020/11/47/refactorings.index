@@ -1,0 +1,46 @@
+1605438062548	Copy file
+1605438067410	Copy file
+1605438765633	Rename type 'UserDTO'
+1605438777363	Rename type 'UserMpper'
+1605438787651	Rename type 'UserService'
+1605438799720	Rename type 'UserServiceImpl'
+1605445072841	Rename package 'com.mygallery.myapp'
+1605445276595	Rename package 'com.mygallery.dto'
+1605483986714	Rename package 'gallery.mapper'
+1605484812891	Rename type 'MemberMpper'
+1605488520657	Rename type 'CustomUserDetailService'
+1605491531335	Delete element
+1605495680169	Rename type 'MemberDAO'
+1605506473550	Delete element
+1605518788348	Rename resource 'home.jsp'
+1605519178447	Delete element
+1605519754237	Rename resource 'home.jsp'
+1605593967000	Delete element
+1605595438296	Delete element
+1605602660560	Move file
+1605603340385	Rename resource 'memberinfo.jsp'
+1605659579482	Delete element
+1605668428591	Rename type 'SaveFile'
+1605668505527	Rename resource 'SaveFile.xml'
+1605743478169	Delete element
+1605743689710	Delete element
+1605743716303	Delete element
+1605752602699	Rename resource 'upload2.jsp'
+1605752607450	Move file
+1605752873947	Delete element
+1605761619254	Delete element
+1605762048996	Delete elements
+1605779556363	Delete element
+1605787264914	Rename type 'pagin'
+1605862396623	Copy file
+1605862410955	Rename resource 'updateForm'
+1605862421836	Delete element
+1605862429513	Copy file
+1605922635764	Copy file
+1605922648843	Rename resource 'list.jsp'
+1605925193876	Copy file
+1605925212650	Rename resource 'insertGalleryForm.jsp'
+1605926139882	Delete element
+1605941461169	Copy file
+1605941476142	Rename resource 'galleryDetail.jsp'
+1605955179479	Copy file

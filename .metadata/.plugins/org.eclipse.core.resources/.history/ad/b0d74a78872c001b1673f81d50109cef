@@ -1,0 +1,18 @@
+package com.mygallery.domain;
+
+public class AttendBasketVO {
+	
+	private String username;
+	
+	
+	private int ecode;
+	
+	private String ename;
+	private String ehost;
+	private String estartD;
+	private String eendD;
+	private String eloca;
+	
+	
+	
+}

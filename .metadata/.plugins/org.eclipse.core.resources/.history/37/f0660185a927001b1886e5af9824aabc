@@ -1,0 +1,12 @@
+package com.mygallery.service;
+
+import com.mygallery.domain.MemberDTO;
+
+public interface MemberService {
+	
+	// 회원 가입
+	public void register(MemberDTO memberDTO);
+	
+	
+
+}

@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>upload</title>
+</head>
+<body>
+	<h1>업로드 페이지</h1>
+	<!-- 파일을 업로드 하려면 반드시 enctype을 맞춰야함 -->
+	<form action="uploadFormAction" method="post" enctype="multipart/form-data">
+	<!-- multiple속성은 한꺼번에 여러 파일을 인풋할 수 있게 해주는 속성 -->
+		<input type="file" name="uploadFile" multiple="multiple">
+		<button>업로드하기</button>
+	</form>
+</body>
+</html>

@@ -1,0 +1,111 @@
+package com.mygallery.controller;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.mygallery.domain.AddressDTO;
+import com.mygallery.domain.MemberDTO;
+import com.mygallery.repository.MemberDAOImpl;
+import com.mygallery.service.MemberServiceImpl;
+
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
+
+@Log
+@RequestMapping("/member/*")
+@Controller
+public class MemberController {
+	
+	@Autowired
+	private MemberServiceImpl mService;
+	@Autowired
+	private MemberDAOImpl mDAO;
+	
+	// 회원가입 페이지 이동
+	@GetMapping("/createMember")
+	public void createMember() {
+		log.info("createForm");
+	}
+	
+	// 회원가입, 아이디 중복 체크
+	@PostMapping("/idcheck")
+	@ResponseBody
+	public String idCheck(String userID)throws Exception {
+		MemberDTO dto = mService.idcheck(userID);
+		if(dto == null) {
+			return "yes";
+		}else {
+			return "no";
+		}
+	}
+	
+	// 회원가입, 주소 검색창 이동
+	@GetMapping("/address")
+	public void address() {
+	}
+	// 주소 검색창, 주소검색
+	@PostMapping("/searchAddr")
+	@ResponseBody
+	public List<AddressDTO> listAddress(String dong){
+		List<AddressDTO> list = mService.Addresslist(dong);
+		return list;
+	}
+	
+	// 회원가입 실행
+	@PostMapping("/createMember")
+	public String doCretateMember(MemberDTO memberDTO) {
+		log.info("doCreate");
+		try {
+			// 회원정보테이블 추가
+			mService.register(memberDTO);
+			// 회원권한테이블 추기
+			mService.registAuth(memberDTO);
+			return "redirect:/customLogin";
+		}catch (Exception e) {
+			System.out.println("데이터 잘못 입력");
+			return null;
+		}		
+	}
+	
+	// 유저 개인정보 조회,화면으로 
+	@GetMapping("/memberInfo/{username}")
+	public String memberinfo(@PathVariable String username, Model m) {
+		MemberDTO dto = mService.getUser(username);
+		m.addAttribute("member", dto);
+		return "member/memberInfo";
+	}
+	
+	// 유저 개인정보 수정
+	@PostMapping("/member/doupdate")
+	public String doupdate(MemberDTO memberDTO) {
+		Boolean test = mService.modify(memberDTO);
+		System.out.println(test);
+		return "redirect:/";
+	}
+	
+	// 회원탈퇴
+	@DeleteMapping("/dodelete/{username}")
+	@ResponseBody
+	public String dodelete(@PathVariable String username) {
+		Boolean test = mDAO.remove(username);
+		return test.toString();
+	}
+	
+	// 관리자 전체 멤버조회
+	@GetMapping("/allmember")
+	public void allMember(Model m) {
+		List<MemberDTO> list = mService.getList();
+		m.addAttribute("alist", list);
+	}
+	
+}

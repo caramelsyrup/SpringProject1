@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/resources/includes/header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>memberInfo</title>
+</head>
+<body>
+<!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+  <div class="container" >
+    <h1 class="mt-5">All Members Info View Page</h1>
+    <p class="lead">Only Administer.</p>
+
+
+
+	<input class="btn btn-primary" type="button" id="btndoUpdate" value="Update">
+	<input class="btn btn-danger" type="button" id="btndoDelete" value="Delete">
+	<input class="btn btn-dark" type="button" value="back" onclick="history.back()">
+   <p>Back to <a href="/">Home</a></p>   
+  </div>
+  
+</main>
+<script src="/resources/js/member.js"></script>
+<footer class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer>
+</body>
+</html>

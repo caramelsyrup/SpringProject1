@@ -1,0 +1,9 @@
+package com.mygallery.repository;
+
+import com.mygallery.domain.MemberDTO;
+
+public interface MemberDAO {
+	
+	
+	public void register(MemberDTO memberDTO);
+}

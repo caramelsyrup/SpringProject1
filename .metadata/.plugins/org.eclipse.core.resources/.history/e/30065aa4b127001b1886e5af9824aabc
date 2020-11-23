@@ -1,0 +1,10 @@
+package com.mygallery.domain;
+
+import lombok.Setter;
+
+@Setter
+public class AddressDTO {
+	
+	private String zipcode,sido,gugun,dong,bunji;
+	
+}

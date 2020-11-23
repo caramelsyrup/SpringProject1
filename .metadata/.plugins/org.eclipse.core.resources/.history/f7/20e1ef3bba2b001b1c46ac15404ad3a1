@@ -1,0 +1,13 @@
+package com.mygallery.mapper;
+
+import java.util.HashMap;
+
+import com.mygallery.domain.EventDTO;
+
+public interface EventMapper {
+	
+	// DB에 게시글 추가
+	public int doInsert(EventDTO eventDTO);
+	// DB 게시글 총 개수 구하기
+	public int ecount(HashMap<String, Object>hm);
+}

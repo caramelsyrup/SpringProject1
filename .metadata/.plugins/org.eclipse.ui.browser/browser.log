@@ -1,0 +1,78 @@
+
+11월 15, 2020 19:32:40.259 NEW SESSION
+11월 15, 2020 19:32:40.260 [1115/193240.256:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+11월 15, 2020 22:03:44.322 [10520:10308:1115/220344.322:ERROR:socket_stream.cc(219)] Closing stream with result -2
+
+11월 16, 2020 18:24:35.244 NEW SESSION
+11월 16, 2020 18:24:35.245 [1116/182435.239:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+
+11월 17, 2020 11:08:41.872 NEW SESSION
+11월 17, 2020 11:08:41.873 [1117/110841.864:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+
+11월 17, 2020 17:38:01.174 NEW SESSION
+11월 17, 2020 17:38:01.174 [1117/173801.164:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+
+11월 18, 2020 08:50:48.393 NEW SESSION
+11월 18, 2020 08:50:48.393 [1118/085048.391:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+11월 18, 2020 11:08:42.850 [15640:10008:1118/110842.849:ERROR:socket_stream.cc(219)] Closing stream with result -2
+11월 18, 2020 11:30:32.278 [15640:10008:1118/113032.278:ERROR:socket_stream.cc(219)] Closing stream with result -2
+
+11월 18, 2020 13:52:38.586 NEW SESSION
+11월 18, 2020 13:52:38.586 [1118/135238.576:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+
+11월 19, 2020 18:31:36.964 NEW SESSION
+11월 19, 2020 18:31:36.965 [12220:8148:1119/183136.962:ERROR:device_event_log_impl.cc(211)] [18:31:36.962] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 19, 2020 18:41:32.121 [1119/184132.120:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+
+11월 20, 2020 08:45:58.568 NEW SESSION
+11월 20, 2020 08:45:58.568 [13356:10600:1120/084558.565:ERROR:device_event_log_impl.cc(211)] [08:45:58.565] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 20, 2020 08:48:27.389 [10904:15580:1120/084827.388:ERROR:device_event_log_impl.cc(211)] [08:48:27.388] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 20, 2020 08:58:22.231 [1120/085822.229:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+11월 20, 2020 11:56:30.94 [10904:15580:1120/115630.093:ERROR:CONSOLE(0)] "TypeError: Cannot read property 'isAnonymousInlineStyleSheet' of null", source:  (0)
+
+11월 20, 2020 22:31:39.101 NEW SESSION
+11월 20, 2020 22:31:39.101 [1588:1268:1120/223139.098:ERROR:device_event_log_impl.cc(211)] [22:31:39.098] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 20, 2020 22:41:31.460 [1120/224131.459:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+
+11월 21, 2020 08:23:35.159 NEW SESSION
+11월 21, 2020 08:23:35.159 [15620:672:1121/082335.157:ERROR:device_event_log_impl.cc(211)] [08:23:35.157] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 21, 2020 08:33:27.370 [1121/083327.369:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+11월 21, 2020 13:33:12.680 [1180:4072:1121/133312.680:ERROR:device_event_log_impl.cc(211)] [13:33:12.680] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 21, 2020 13:43:01.24 [1121/134301.023:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+11월 21, 2020 14:53:12.89 [1180:4072:1121/145312.088:ERROR:CONSOLE(0)] "TypeError: Cannot read property 'isAnonymousInlineStyleSheet' of null", source:  (0)
+11월 21, 2020 14:53:12.553 [1180:4072:1121/145312.552:ERROR:CONSOLE(0)] "TypeError: Cannot read property 'isAnonymousInlineStyleSheet' of null", source:  (0)
+11월 21, 2020 16:29:32.51 [10924:11748:1121/162932.051:ERROR:device_event_log_impl.cc(211)] [16:29:32.050] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 21, 2020 16:39:22.409 [1121/163922.407:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+
+11월 21, 2020 19:52:14.754 NEW SESSION
+11월 21, 2020 19:52:14.754 [13612:12332:1121/195214.751:ERROR:device_event_log_impl.cc(211)] [19:52:14.751] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+
+11월 21, 2020 19:55:35.262 NEW SESSION
+11월 21, 2020 19:55:35.262 [14332:16908:1121/195535.259:ERROR:device_event_log_impl.cc(211)] [19:55:35.259] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 21, 2020 20:05:31.810 [1121/200531.809:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+
+11월 22, 2020 15:33:46.927 NEW SESSION
+11월 22, 2020 15:33:46.927 [1600:9124:1122/153346.922:ERROR:device_event_log_impl.cc(211)] [15:33:46.922] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 22, 2020 15:43:45.336 [1122/154345.335:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+
+11월 22, 2020 17:44:41.60 NEW SESSION
+11월 22, 2020 17:44:41.60 [17828:8932:1122/174441.057:ERROR:device_event_log_impl.cc(211)] [17:44:41.057] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+
+11월 22, 2020 18:00:36.762 NEW SESSION
+11월 22, 2020 18:00:36.762 [16032:18184:1122/180036.759:ERROR:device_event_log_impl.cc(211)] [18:00:36.759] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 22, 2020 18:10:33.927 [1122/181033.926:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+11월 22, 2020 19:08:57.57 [17220:6332:1122/190857.056:ERROR:device_event_log_impl.cc(211)] [19:08:57.057] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+
+11월 22, 2020 19:12:16.675 NEW SESSION
+11월 22, 2020 19:12:16.675 [10828:12480:1122/191216.673:ERROR:device_event_log_impl.cc(211)] [19:12:16.674] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 22, 2020 19:13:38.492 [16408:18896:1122/191338.492:ERROR:device_event_log_impl.cc(211)] [19:13:38.492] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 22, 2020 19:18:47.434 [10520:18000:1122/191847.434:ERROR:device_event_log_impl.cc(211)] [19:18:47.434] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 22, 2020 19:22:44.564 [17500:18512:1122/192244.564:ERROR:device_event_log_impl.cc(211)] [19:22:44.564] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 22, 2020 19:27:01.509 [7128:11280:1122/192701.509:ERROR:device_event_log_impl.cc(211)] [19:27:01.508] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 22, 2020 19:36:56.880 [1122/193656.877:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+11월 23, 2020 24:11:51.524 [13596:16676:1123/001151.524:ERROR:device_event_log_impl.cc(211)] [00:11:51.524] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 23, 2020 24:21:35.113 [3732:4976:1123/002135.112:ERROR:device_event_log_impl.cc(211)] [00:21:35.113] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+
+11월 23, 2020 09:04:38.95 NEW SESSION
+11월 23, 2020 09:04:38.95 [2900:18168:1123/090438.091:ERROR:device_event_log_impl.cc(211)] [09:04:38.091] USB: usb_device_handle_win.cc:1020 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+11월 23, 2020 09:14:28.804 [1123/091428.801:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)

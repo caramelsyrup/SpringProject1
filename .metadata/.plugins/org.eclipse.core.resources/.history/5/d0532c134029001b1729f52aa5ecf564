@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.mygallery.mapper.SaveFile">
+        	<!-- 파일 추가 -->
+        	<insert id="insertFile" parameterType="com.mygallery.domain.SaveFile">
+        		INSERT INTO save_file (fnum,gnum,filename) VALUES(save_file_seq.nextval,#{gnum},#{filename})
+        	</insert>
+        	
+        	<!-- 갤러리테이블 한 항목의 파일 리스트 조회 -->
+        	<select id="getList" parameterType="Integer" resultType="com.mygallery.domain.SaveFile">
+        		SELECT * FROM save_file WHERE gnum=#{gnum}
+        	</select>
+        	<!-- 파일리스트 삭제 -->
+        	<delete id="deleteList" parameterType="Integer">
+        		DELETE FROM save_file WHERE gnum=#{gnum}
+        	</delete>
+        	
+        	<!-- 파일항목 상세조회 -->
+        	<select id="get" parameterType="Interger"></select>
+        </mapper>

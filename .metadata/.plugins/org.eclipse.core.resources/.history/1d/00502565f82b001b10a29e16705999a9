@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/resources/includes/header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>InsertForm</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main role="main" class="flex-shrink-0">
+  <div class="container">
+    <h1 class="mt-5">Update Gallery Contents Page</h1>
+    <p class="lead"></p>
+    	<form class="card p-2" method="post" enctype="multipart/form-data" id="picUpdateForm">
+	    	<div class="mb-3">
+	    		<input type="hidden" name="gnum" id="gnum" value="${pic.gnum}">
+			   	<label for="arttitle" class="badge badge-danger">Art Title</label>
+			    <input type="text" class="form-control" id="uarttitle" name="arttitle" value="${pic.arttitle}">
+			    <label for="artwriter" class="badge badge-warning">Art Writer</label>
+			    <input type="text" class="form-control" id="uartwriter" name="artwriter" value="${pic.artwriter}">
+			    <label for="artdate" class="badge badge-success">Art Date</label>
+			    <input type="text" class="form-control" id="uartdate" name="artdate" placeholder="yyyy" value="${pic.artdate}">
+			    <label for="artfilename" class="badge badge-primary">Art FileName</label>
+			    <input type="file" class="form-control" id="uuploadFile" name="uploadFile"><!-- 파일업로드부분 -->
+			    <button type="button" class="btn btn-outline-success" id="btndoUpdate" style="margin-top: 20px;">Update</button>
+			    <button type="button" class="btn btn-outline-danger" onclick="self.close()" style="margin-top: 20px;">Close</button>
+	  		</div>
+  		</form>
+    <p>Back to <a href="#">the default sticky footer</a> minus the navbar.</p> 
+  </div>
+  </main>
+  <script src="/resources/js/gallery.js"></script>
+  <footer class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer>
+</body>
+</html>

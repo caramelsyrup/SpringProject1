@@ -1,0 +1,19 @@
+package com.mygallery.domain;
+
+import java.util.List;
+
+import lombok.Data;
+
+// 게시되는 글과 파일
+@Data
+public class GalleryDTO {
+	
+	private int gnum;
+	
+	private String arttitle;
+	
+	private String artwriter;
+	
+	private String artdate;
+	
+}

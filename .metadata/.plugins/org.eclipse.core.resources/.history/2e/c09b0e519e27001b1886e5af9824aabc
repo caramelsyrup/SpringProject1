@@ -1,0 +1,6 @@
+package com.mygallery.domain;
+
+public class AuthVO {
+	private String username;
+	
+}

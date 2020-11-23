@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mygallery.mapper.MemberMapper">
+	<!-- 로그인을 위한 회원 정보 조회 -->
+<!-- 	<resultMap type="com.mygallery.domain.MemberDTO" id="memberMap">
+		<id property="username" column="username"/>
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+		<result property="membername" column="membername"/>
+		<result property="age" column="age"/>
+		<result property="address" column="address"/>
+		<result property="email" column="email"/>
+		<result property="regdate" column="regdate"/>
+		<collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+	
+	<resultMap type="com.mygallery.domain.AuthVO" id="authMap">
+		<result property="username" column="username"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
+	<select id="read" resultMap="memberMap">
+		SELECT mem.username,password,membername,age,address,email,regdate,enabled FROM tbl_member mem 
+		LEFT OUTER JOIN tbl_member_auth auth ON mem.username = auth.username WHERE mem.username = #{username}
+	</select> -->
+	
+	<!-- 회원가입, 아이디 중복체크 -->
+	<select id="idcheck" parameterType="String" resultType="com.mygallery.domain.MemberDTO">
+		SELECT * FROM tbl_member WHERE username=#{username}
+	</select>
+	<!-- 주소검색 -->
+	<select id="Addresslist" parameterType="String" resultType="com.mygallery.domain.AddressDTO">
+		SELECT * FROM address WHERE dong LIKE '%'||#{dong}||'%'
+	</select>
+	
+	<!-- 일반회원 가입  -->
+	<insert id="register" parameterType="com.mygallery.domain.MemberDTO">
+		INSERT INTO tbl_member (username,password,membername,age,address,email,regdate,enabled)
+		VALUES (#{username},#{password},#{membername},#{age},#{address},#{email},sysdate,'1')
+	</insert>
+	<insert id="registAuth" parameterType="com.mygallery.domain.MemberDTO">
+		INSERT INTO tbl_member_auth (username,auth) VALUES (#{username},'0')
+	</insert>
+	
+	<!-- 회원정보 상세 보기 -->
+	<select id="getUser" parameterType="String" resultType="com.mygallery.domain.MemberDTO">
+		SELECT * FROM tbl_member WHERE username=#{username}
+	</select>
+	<!-- 회원정보 수정 -->
+	<update id="modify" parameterType="com.mygallery.domain.MemberDTO">
+		UPDATE tbl_member SET password=#{password},membername=#{membername},age=#{age},address=#{address},email=#{email},regdate=SYSDATE,enabled='1' WHERE username=#{username}
+	</update>
+	<!-- 회원정보 삭제 -->
+	<delete id="remove"></delete>
+	
+
+	
+</mapper>

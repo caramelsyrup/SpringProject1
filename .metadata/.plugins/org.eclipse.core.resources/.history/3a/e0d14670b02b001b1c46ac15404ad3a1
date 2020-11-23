@@ -1,0 +1,30 @@
+package com.mygallery.domain;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+public class EventDTO {
+	// 게시글 번호
+	private int ecode;
+	// 게시글 제목,주최자,시작일,종료일,장소,설명,그림파일명
+	private String ename;
+	private String ehost;
+	private String estartD;
+	private String eendD;
+	private String eloca; 
+	private String edesc; 
+	private String efilename;
+	private MultipartFile uploadFile;
+	
+	// MultipartFile은 제외 시켜야함.
+	@Override
+	public String toString() {
+		return "EventDTO [ ecode="+ecode+",ehost="+ehost+",estartD="+estartD+",eendD="+eendD+",eloca="+eloca+",edesc="+edesc+",efilename="+efilename+"]";
+	}
+	
+
+}

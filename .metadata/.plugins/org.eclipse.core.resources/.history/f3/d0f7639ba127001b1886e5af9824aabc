@@ -1,0 +1,5 @@
+package com.mygallery.security;
+
+public class CustomUserDetailService {
+
+}

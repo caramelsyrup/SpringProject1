@@ -1,0 +1,44 @@
+package com.mygallery.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mygallery.domain.MemberDTO;
+import com.mygallery.mapper.MemberMapper;
+import com.mygallery.repository.MemberDAOImpl;
+
+@Service
+public class MemberServiceImpl implements MemberService {
+	
+	@Autowired
+	private MemberMapper mMapper;
+	@Autowired
+	private MemberDAOImpl mDAO;
+	
+	@Override
+	public void register(MemberDTO memberDTO) {
+		mDAO.register(memberDTO);
+	}
+	@Override
+	public void registAuth(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		mDAO.registAuth(memberDTO);
+		
+	}
+	
+	// 아이디 중복체크
+	@Override
+	public MemberDTO idcheck(String userID) {
+
+		MemberDTO dto = mMapper.idcheck(userID);
+		if(dto == null) {
+			return "yes";
+		}
+		return "no";
+		
+	}
+
+	
+
+	
+}

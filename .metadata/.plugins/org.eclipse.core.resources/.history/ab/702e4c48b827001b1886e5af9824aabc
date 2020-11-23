@@ -1,0 +1,9 @@
+package com.mygallery.repository;
+
+
+
+public interface MemberDAO {
+	
+	
+	public void register();
+}

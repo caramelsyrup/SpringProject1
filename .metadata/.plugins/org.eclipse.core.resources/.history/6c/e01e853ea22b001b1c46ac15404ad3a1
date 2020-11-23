@@ -1,0 +1,5 @@
+package com.mygallery.mapper;
+
+public interface EventMapper {
+	
+}

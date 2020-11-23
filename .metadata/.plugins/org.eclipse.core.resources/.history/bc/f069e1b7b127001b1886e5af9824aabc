@@ -1,0 +1,32 @@
+package com.mygallery.domain;
+
+import lombok.Setter;
+
+@Setter
+public class AddressDTO {
+	
+	private String zipcode,sido,gugun,dong,bunji;
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public String getSido() {
+		return sido;
+	}
+
+	public String getGugun() {
+		return gugun;
+	}
+
+	public String getDong() {
+		return dong;
+	}
+
+	public String getBunji() {
+		return bunji;
+	}
+	
+	
+	
+}

@@ -1,0 +1,92 @@
+package com.mygallery.controller;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.mygallery.domain.GalleryDTO;
+import com.mygallery.service.GalleryServiceImpl;
+
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
+
+
+// 파일 업로드를 위한 컨트롤러
+@Log
+@Controller
+public class UploadController {
+	@Autowired
+	private GalleryServiceImpl gservice;
+	// 폴더 경로
+	String uploadFolder = "C:\\upload";
+	
+	/*
+	 * // 파일업로드 폼 화면
+	 * 
+	 * @GetMapping("/uploadForm") public void uploadForm() {
+	 * log.info("upload form"); }
+	 * 
+	 * // 파일업로드 실행
+	 * 
+	 * @PostMapping("/uploadFormAction") public String upload(MultipartFile[]
+	 * uploadFile,Model model) { // 여러개의 파일을 한번에 업로드 가능 for(MultipartFile
+	 * multipartFile : uploadFile) { // 로그로 파일 이름과 용량을 찍음
+	 * log.info("==================================");
+	 * log.info("upload file name : "+multipartFile.getOriginalFilename());
+	 * log.info("upload file size : "+multipartFile.getSize());
+	 * 
+	 * // uploadFolder의 주소 아래에 경로 생성. File saveFile = new File(uploadFolder,
+	 * multipartFile.getOriginalFilename());
+	 * 
+	 * try { // 파일을 이동해서 복사 (업로드) multipartFile.transferTo(saveFile); } catch
+	 * (IllegalStateException | IOException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } } return "redirect:/gallery/list"; }
+	 */
+	
+	// 파일업로드 양식화면
+	@GetMapping("/upload2")
+	public void uploadForm2() {
+		log.info("upload form");
+	}
+	
+	// 파일 업로드 기능 실행
+	@PostMapping("/upload2")
+	public String upload2(MultipartFile[] artfilename,@ModelAttribute("gallery") GalleryDTO gallery) {
+		
+		log.info("gallery.."+gallery);
+		
+		for(MultipartFile multipartFile : artfilename) {
+			log.info("===============================");
+			log.info("upload file name : "+multipartFile.getOriginalFilename());
+			log.info("upload file size : "+multipartFile.getSize());
+			
+			// uploadFolder경로 밑에 생성.
+			File saveFile = new File(uploadFolder,multipartFile.getOriginalFilename());
+			
+			try {
+				// 파일을 이동해서 복사
+				multipartFile.transferTo(saveFile);
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return "redirect:/gallery/list";
+		
+	}
+	
+	
+	
+	
+}

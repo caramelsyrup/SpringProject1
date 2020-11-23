@@ -1,0 +1,7 @@
+package com.mygallery.service;
+
+public interface GalleryService {
+	
+	
+
+}

@@ -1,0 +1,10 @@
+package com.mygallery.mapper;
+
+public interface SaveFile {
+	
+	// 파일 추가
+	public void insertFile(SaveFile saveFile);
+	
+	// 파일 전체 조회
+	
+}

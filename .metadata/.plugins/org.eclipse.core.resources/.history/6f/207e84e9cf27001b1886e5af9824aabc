@@ -1,0 +1,23 @@
+package com.mygallery.security;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		
+		// super.configure(web);
+		// 아무런 작업을 하지 않는다.
+		// 스프링시큐러티의 필터 연결을 설정하기 위한 오버라이딩.
+		// 예외 웹접근 url을 설정
+	}
+
+	
+}

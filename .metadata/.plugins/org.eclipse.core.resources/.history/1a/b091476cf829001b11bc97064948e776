@@ -1,0 +1,33 @@
+package com.mygallery.service;
+
+import java.util.List;
+
+import com.mygallery.domain.GalleryDTO;
+import com.mygallery.domain.SaveFile;
+
+public interface GalleryService {
+	
+	// 전체 갤러리테이블 조회
+	public List<GalleryDTO>getList();
+	
+	// 갤러리 테이블에만 데이터 추가
+	public void insertOnlyGallery(GalleryDTO galleryDTO);
+	
+	// 추가
+	public void insert(GalleryDTO galleryDTO);
+		
+	// 항목 상세조회
+	public GalleryDTO get(int gnum);
+		
+	// 항목 수정
+	public void update(GalleryDTO galleryDTO);
+		
+	// 항목 삭제
+	public void delete(int gnum);
+	
+	// saveFile리스트 풀기
+	public void registerFile(List<SaveFile>fileList);
+	
+	// saveFile 삭제
+	public void removeFIle(int fnum);
+}

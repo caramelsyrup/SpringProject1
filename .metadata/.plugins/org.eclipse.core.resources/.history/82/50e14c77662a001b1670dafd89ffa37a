@@ -1,0 +1,7 @@
+package com.mygallery.domain;
+
+public class GalleryVO {
+	
+	private int count;
+
+}

@@ -1,0 +1,40 @@
+package com.mygallery.domain;
+
+import org.springframework.stereotype.Component;
+
+import lombok.Setter;
+
+@Setter
+@Component
+public class AddressDTO {
+	
+	private String zipcode,sido,gugun,dong,bunji;
+	private int seq;
+
+	public String getZipcode() {
+		return zipcode == null? "" : zipcode.trim();
+	}
+
+	public String getSido() {
+		return sido == null? "" : sido.trim();
+	}
+
+	public String getGugun() {
+		return gugun == null? "" : gugun.trim();
+	}
+
+	public String getDong() {
+		return dong == null ? "" : dong.trim();
+	}
+
+	public String getBunji() {
+		return bunji == null? "":bunji.trim();
+	}
+
+	public int getSeq() {
+		return seq;
+	}
+	
+	
+	
+}

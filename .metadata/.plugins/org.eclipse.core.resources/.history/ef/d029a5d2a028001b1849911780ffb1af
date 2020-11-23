@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>address</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Latest compiled JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resources/js/member.js"></script>
+</head>
+<body class="d-flex flex-column h-100">
+<main role="main" class="flex-shrink-0">
+  <div class="container">
+    <h1 class="mt-5">Search Address View</h1>
+    <p class="lead">
+    <input type="text" id="dong" name="address" size="20">
+	<button type="button" id="btnAddressChk">주소검색</button>
+	</p>
+  </div>
+  <div id="resultArea">
+		<table>
+			<thead></thead>
+			<tbody></tbody>
+		</table>
+	</div>
+</main>
+
+
+</body>
+</html>

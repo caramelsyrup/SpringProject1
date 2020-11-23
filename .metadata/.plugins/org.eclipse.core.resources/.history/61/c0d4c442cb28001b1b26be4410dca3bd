@@ -1,0 +1,16 @@
+package com.mygallery.domain;
+
+import lombok.Data;
+
+@Data
+public class GalleryDTO {
+	
+	private int gnum;
+	
+	private String arttitle;
+	
+	private String artwriter;
+	
+	
+	
+}

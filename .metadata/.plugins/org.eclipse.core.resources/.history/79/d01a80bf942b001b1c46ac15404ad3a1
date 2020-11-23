@@ -1,0 +1,5 @@
+package com.mygallery.service;
+
+public class EventServiceImpl {
+
+}

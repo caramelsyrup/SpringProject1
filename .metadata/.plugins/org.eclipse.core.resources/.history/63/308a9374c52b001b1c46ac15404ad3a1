@@ -1,0 +1,17 @@
+package com.mygallery.service;
+
+import java.util.HashMap;
+import java.util.List;
+
+import com.mygallery.domain.EventDTO;
+
+public interface EventService {
+	
+	// DB에 행사 게시글 추가
+	public int doEinsert(EventDTO eventDTO);
+	// DB 총 게시글 수 구하기
+	public int ecount(HashMap<String, Object>hm);
+	
+	// DB 리스트 구하기
+	public List<EventDTO>elist(HashMap<String, Object>hm);
+}

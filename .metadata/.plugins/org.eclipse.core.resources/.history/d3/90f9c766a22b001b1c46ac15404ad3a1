@@ -1,0 +1,19 @@
+package com.mygallery.service;
+
+import org.springframework.stereotype.Service;
+
+import com.mygallery.domain.EventDTO;
+import com.mygallery.mapper.EventMapper;
+
+@Service
+public class EventServiceImpl implements EventService {
+	
+	private EventMapper eMapper;
+	
+	// DB에 게시글 추가하기
+	@Override
+	public void insert(EventDTO eventDTO) {
+		
+	}
+
+}

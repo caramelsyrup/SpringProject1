@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		<!-- 에러페이지 처리를 위한 핸들러 클래스를 빈 객체 등록 -->
+		<bean id="customAccessDenied" class="com.mygallery.security.CustomAccessDeniedHandler"></bean>	
+		<!-- 로그인 성공을 처리하기 위한 핸들러 클래스를 빈 객체 등록 -->
+		<bean id="customLoginSuccess" class="com.mygallery.security.CustomLoginSuccessHandler"></bean>
+		
+		<!-- passwordencoder -->
+		<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+		
+		<!-- customuserdetailservice -->
+		<bean id="customUserDetailService" class="com.mygallery.security.CustomUserDetailsService"></bean>
+		
+	<security:http auto-config="true" use-expressions="true">
+		
+		<!-- 해당 페이지에 접속하기위해서는 해당 권한이 필요함 -->
+		<security:intercept-url pattern="/gallery/all" access="permitAll"/>
+		
+		<security:intercept-url pattern="/gallery/member" access="hasRole('ROLE_MEMBER')"/>
+		
+		<security:intercept-url pattern="/gallery/admin" access="hasRole('ROLE_ADMIN')"/>
+		
+		<!-- get방식 uri지정, 로그인 성공시 핸들러 이용. 로그인에 따라서 분기점 적용 -->
+		<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/>
+		
+		<!-- <security:access-denied-handler error-page="/accessError"/> -->
+		<!-- 에러시 핸들러 객체를 이용 -->
+		<security:access-denied-handler ref="customAccessDenied"/>
+		<!-- 로그아웃 처리후 로직을 핸들러로 처리 , url처리, 세션,쿠키 지움 -->
+		<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="true" logout-success-url="/customLogin"/>
+		<!-- csrf를 통한 공격에 대비, 비활성화 가능 -->
+		<!-- <security:csrf disabled="true"/> -->
+		
+	</security:http>
+	<!-- 인증과 권한에 대한 실제 처리를 위해서 설정 -->
+	<!-- <security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+			시큐리티5부터는 인코더 필요
+				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>
+				<security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN"/>
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager> -->
+	<!-- jdbc이용, passwordencoder이용 -->
+<!-- 	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="dataSource"
+			users-by-username-query="SELECT username,password,membername,enabled FROM tbl_member WHERE username=?"
+			authorities-by-username-query="SELECT username,auth FROM tbl_member_auth WHERE username=?"/>
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+		</security:authentication-provider>
+	</security:authentication-manager> -->
+
+</beans>

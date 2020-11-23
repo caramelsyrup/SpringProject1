@@ -1,0 +1,21 @@
+package com.mygallery.repository;
+
+import org.springframework.stereotype.Repository;
+
+import com.mygallery.domain.MemberDTO;
+
+@Repository
+public class MemberDAOImpl implements MemberDAO {
+
+	@Override
+	public void register(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void registAuth(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

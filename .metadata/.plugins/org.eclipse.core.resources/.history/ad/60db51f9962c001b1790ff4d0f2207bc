@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.mygallery.mapper.EventMapper">
+        	<sql id="eserach">
+        		<where>
+        		<!-- 주최자 검색 -->
+	        		<if test="word != null and (field eq 'ehost'.toString())">
+	        			ehost LIKE '%${ehost}%'
+	        		</if>
+        		<!-- 행사이름 검색 -->
+	        		<if test="word != null and (field eq 'ename'.toString())">
+	        			ename LIKE '%${ename}%'
+	        		</if>
+        		</where>
+        	</sql>
+        	<!-- 추가하기 -->
+        	<insert id="doInsert" parameterType="com.mygallery.domain.EventDTO">
+        		INSERT INTO event_board (ecode,ename,ehost,estartD,eendD,eloca,edesc,efilename) VALUES (event_board_seq.nextval,#{ename},#{ehost},#{estartD},#{eendD},#{eloca},#{edesc},#{efilename})
+        	</insert>
+        	<!-- 총 게시글 수 구하기 -->
+        	<select id="ecount" parameterType="HashMap" resultType="Integer">
+        		SELECT count(*) FROM event_board <include refid="eserach"/>
+        	</select>
+        	<!-- 전체조회, 페이징. 검색기능 추가가능 -->	
+        	<select id="elist" parameterType="HashMap" resultType="com.mygallery.domain.EventDTO">
+        		SELECT * FROM
+        		<!-- INDEX --> 
+	        		(SELECT aa.*,rownum rn FROM
+	        			(SELECT * FROM event_board <include refid="eserach"/> ORDER BY ecode DESC) aa
+	        		WHERE rownum &lt;=#{endRow})
+        		WHERE rn >= #{startRow}
+        	</select>
+        	<!-- 상세보기 -->
+        	<select id="get" parameterType="Integer" resultType="com.mygallery.domain.EventDTO">
+        		SELECT * FROM event_board WHERE ecode=#{ecode}
+        	</select>
+        	<!-- 수정하기 -->
+        	<update id="updateEven" parameterType="com.mygallery.domain.EventDTO">
+        		UPDATE event_board SET ename=#{ename},estartD=#{estartD},eendD=#{eendD},eloca=#{eloca},edesc=#{edesc},efilename=#{efilename} WHERE ecode=#{ecode}
+        	</update>
+        	<!--  삭제하기 -->
+        	<delete id="deleteEven" parameterType="Integer">
+        		DELETE FROM event_board WHERE ecode=#{ecode}
+        	</delete>
+        	<!-- 예약 확인 체크 -->
+        	<select id="checkAttend" parameterType="com.mygallery.domain.AttendBasketDTO" resultType="Integer">
+        		SELECT count(*) FROM attend_basket WHERE ecode=#{ecode} AND username=#{username}
+        	</select>
+        	<!-- 예약하기 추가 -->
+        	<insert id="makeAttend" parameterType="com.mygallery.domain.AttendBasketDTO"> 
+        		INSERT INTO attend_basket (bnum,username,ecode,ename,estartD,eendD=,eloca=#{eloca}) VALUES (attend_basket_seq.nextval,#{username},#{ecode},#{ename},#{estartD},#{eendD})
+        	</insert>
+        </mapper>

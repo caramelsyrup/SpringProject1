@@ -1,0 +1,7 @@
+package com.mygallery.domain;
+
+public class AddressDTO {
+	
+	private String zipcode,sido,gugun,dong,bunji;
+	
+}

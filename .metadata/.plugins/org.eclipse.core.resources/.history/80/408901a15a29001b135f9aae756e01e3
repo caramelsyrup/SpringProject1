@@ -1,0 +1,32 @@
+package com.mygallery.security;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.web.access.AccessDeniedHandler;
+
+import lombok.extern.log4j.Log4j;
+
+
+// 로그인 실패나 로그인 에러시
+
+public class CustomAccessDeniedHandler implements AccessDeniedHandler {
+	
+	// 직접적으로 서블릿 API를 이용. 리퀘스트, 리스폰스가 존재
+	@Override
+	public void handle(HttpServletRequest request, HttpServletResponse response,
+			AccessDeniedException accessDeniedException) throws IOException, ServletException {
+		
+		log.error("Access Denied Handler");
+		
+		log.error("Redirect....");
+		
+		response.sendRedirect("/accessError");
+		
+	}
+
+}

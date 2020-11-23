@@ -1,0 +1,22 @@
+package com.mygallery.mapper;
+
+import java.util.List;
+
+import com.mygallery.domain.SaveFile;
+
+public interface SaveFileMapper {
+	
+	// 파일 추가
+	public void insertFile(SaveFile saveFile);
+	
+	// 참조된 갤러리 테이블의 항목의 파일 전체 조회
+	public List<SaveFile>getList(int gnum);
+	// 참조 갤러리 테이블 항목의 파일 전체 삭제
+	public void deleteList(int gnum);
+	
+	// 파일 테이블의 항목 상세 조회
+	public SaveFileMapper get(int fnum);
+	// 파일테이블의 한 항목 삭제
+	public void deleteOne(int fnum);
+	
+}

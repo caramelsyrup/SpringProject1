@@ -1,0 +1,40 @@
+package com.mygallery.security;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		
+		// super.configure(web);
+		// 아무런 작업을 하지 않는다.
+		// 스프링시큐러티의 필터 연결을 설정하기 위한 오버라이딩.
+		// 예외 웹접근 url을 설정
+		// ACL(접근제어목록)의 예외 url 설정.
+	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// TODO Auto-generated method stub
+		super.configure(auth);
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		// 인터셉터로 요청을 안전하게 보호하는 방법을 설정하기 위한 오버라이딩
+		super.configure(http);	// 모든 url을 막고 있음.
+	}
+	
+	
+
+	
+}

@@ -1,0 +1,41 @@
+$(document).ready(function(){
+	
+
+	$("#btnLogin").click(function(){
+		var userID = $("#username").val();
+		var password = $("#password").val();
+		if(userID==""){
+			alert('아이디를 입력하세요!');
+			$("#username").focus();
+			return false;
+		}
+		if(password==""){
+			alert('비밀번호를 입력하세요!');
+			$("#password").focus();
+			return false;
+		}
+		loginDo($("#username").val(),$("#password").val());
+	});
+	
+	
+});
+
+function loginDo(username,password){
+	// 값이 있으면, 해당 컨트롤러에서 처리후 결과 받음
+		$.ajax({
+			type:"post",
+			url:"/login",
+			data:{"username":userID,"password":password}	
+		})
+		.done(function(resp){
+			alert(resp);
+			if(resp=="go"){
+				location.href="/";
+			}
+			
+		})
+		.fail(function(e){
+			alert(e);
+		})
+
+}

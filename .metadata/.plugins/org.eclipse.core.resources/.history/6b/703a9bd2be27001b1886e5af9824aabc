@@ -1,0 +1,29 @@
+package com.mygallery.repository;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.mygallery.domain.AddressDTO;
+import com.mygallery.domain.MemberDTO;
+
+@Repository
+public class MemberDAOImpl implements MemberDAO {
+
+	@Override
+	public void register(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void registAuth(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public List<AddressDTO> Addresslist(String dong) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.mygallery.domain;
+
+public class AttendBasketDTO {
+	
+	private int bnum;
+	private String username;
+	private int ecode;
+	
+}

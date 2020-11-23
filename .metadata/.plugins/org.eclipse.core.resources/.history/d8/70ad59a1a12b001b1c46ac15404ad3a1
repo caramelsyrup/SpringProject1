@@ -1,0 +1,9 @@
+package com.mygallery.service;
+
+import com.mygallery.domain.EventDTO;
+
+public interface EventService {
+	
+	public void insert(EventDTO eventDTO);
+	
+}

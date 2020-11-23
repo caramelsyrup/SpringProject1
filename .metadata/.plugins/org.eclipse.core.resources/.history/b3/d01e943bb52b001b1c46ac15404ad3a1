@@ -1,0 +1,11 @@
+package com.mygallery.service;
+
+import com.mygallery.domain.EventDTO;
+
+public interface EventService {
+	
+	// DB에 행사 게시글 추가
+	public void insert(EventDTO eventDTO);
+	public int doEinsert(EventDTO eventDTO);
+	
+}

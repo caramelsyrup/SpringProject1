@@ -1,0 +1,21 @@
+package com.mygallery.domain;
+
+import lombok.Data;
+
+@Data
+public class AttendBasketVO {
+	
+	// tbl_member table
+	private String username;
+	
+	// event table
+	private int ecode;
+	private String ename;
+	private String ehost;
+	private String estartD;
+	private String eendD;
+	private String eloca;
+	
+	
+	
+}

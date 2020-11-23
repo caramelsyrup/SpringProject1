@@ -1,0 +1,11 @@
+package com.mygallery.mapper;
+
+import java.util.List;
+
+import com.mygallery.domain.GalleryDTO;
+
+public interface GalleryMapper {
+	
+	public List<GalleryDTO>getList();
+
+}

@@ -1,0 +1,266 @@
+var page = 1;
+// 정규식 표현
+var artDatet = /^[1-9]{1}[0-9]{2}$/; // 3자리 처음은 1~9까지, 둘쨰세쨰는 0~9 숫자만
+var artDatef = /^[1-2]{1}[0-1]{1}[0-9]{2}$/;	// 최대 2199까지 입력
+
+$(document).ready(function(){
+	// 페이지가 로드되면, 데이터 가져오기
+	getList(page,$('#field').val(),$('#words').val());
+	
+	// 갤러리에 추가하기
+	$("#btnUpload").click(function(){
+		if($("#arttitle").val().trim()==""){
+			alert('Fill out!');
+			$("#arttitle").focus();
+			return false;
+		}
+		if($("#artwriter").val().trim()==""){
+			alert('Fill out!');
+			$("#artwriter").focus();
+			return false;
+		}
+		
+		// 날짜형식 지정 표현 판단 함수
+		var inartdate = $("#artdate").val();	// 입력값을 변수에 저장
+		if(inartdate.match(artDatet)){
+			return true;
+		}else if(inartdate.match(artDatef)){
+			return true;
+		}else{
+			alert('Check your input!');
+			$("#artdate").val("");
+			$("#artdate").focus();
+			return false;
+		}
+		
+		if($("#uploadFile").val().trim()==""){
+			alert('Fill out!');
+			return false;
+		}
+		
+		insertPic();
+	});
+	
+	// 버튼을 눌렸을떄, 스크롤 올라갈때 효과
+	$('#goTop').click(function(){
+		$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+		return false;
+	});
+
+	// 갤러리 리스트 검색하여 띄우기
+/*	$("#btnSearchGallery").click(function(){
+		$("#row").html("");
+		getResultList(page,$("#field").val(),$('#words').val());
+	});
+*/
+	// 갤러리 게시물 수정 창 띄우기
+	$("#btnUpdatePic").click(function(){
+		var gnum = $("#gnum").val();
+		var	url = "/gallery/updateForm/"+gnum;
+		window.open(url,"",'width=1000, height=600, top =200, left = 200, menubars=no, scrollbars=auto, location=no');
+	});
+	
+	// 갤러리 게시물 수정 버튼
+	$("#btndoUpdate").click(function(){
+		if($("#uarttitle").val().trim()==""){
+			alert('Fill out!');
+			$("#uarttitle").focus();
+			return false;
+		}
+		if($("#uartwriter").val().trim()==""){
+			alert('Fill out!');
+			$("#uartwriter").focus();
+			return false;
+		}
+		if($("#uuploadFile").val().trim()==""){
+			alert('Fill out!');
+			return false;
+		}
+		// 날짜형식 지정 표현 판단 함수
+		var inartdate = $("#uartdate").val();	// 입력값을 변수에 저장
+		if(inartdate.match(artDatet)){
+			return true;
+		}else if(inartdate.match(artDatef)){
+			return true;
+		}else{
+			alert('Check your input!');
+			$("#uartdate").val("");
+			$("#uartdate").focus();
+			return false;
+		}
+		exeTest();
+		refreshGallery();
+	});
+	
+	// 갤러리 게시물 삭제하기 버튼
+	$("#btnDeletePic").on("click", function(){
+		var judge = confirm("It will be deleted");
+		if(judge){
+			deletePic();
+			refreshGallery();
+		}else{
+		}
+	});
+	
+	
+});	// document ready
+	//스크롤이 내려갈떄
+	$(window).scroll(function(){
+		// 스크롤 최하단에서 30px정도 오면 새로운 리스트를 부르도록, 리스트를 조회, page를 그다음에 증가
+		if($(window).scrollTop()+30 >= $(document).height()-$(window).height()){
+			page++;
+			getList(page, $("#field").val(),$("#word").val());
+		}
+	});
+	// 게시물 부모창 목록 새고로침
+	function refreshGallery(){
+		opener.document.location.reload();
+	}
+	// 게시물 추가하기
+	function insertPic(){
+		var form = $("#insertForm")[0];
+		// FormData 객체 생성
+		var formData = new FormData(form);
+		
+		$.ajax({
+			type:"POST",
+			enctype:"multipart/form-data",
+			url:"/gallery/upload",
+			data:formData,
+			processData:false,
+			contentType:false,
+			cache:false,
+			timeout:600000,
+			success: function(resp){
+				if(resp==1){
+					alert("Done");
+					location.href="/gallery/list";
+					}
+			},
+			error: function(e){
+				alert("Error");
+			}
+		});
+		
+	}
+	// 게시물 삭제하기
+	function deletePic(){
+		var gnum1 = $("#gnum").val();
+		
+		$.ajax({
+			type:"DELETE",
+			url:"/gallery/delete/"+gnum1
+		})
+		.done(function(resp){
+			alert("Done");
+			self.close();
+		})
+		.fail(function(e){
+			alert("error");
+		})
+	}
+	
+	// 게시물 수정하기 ajax으로
+	function exeTest(){
+		var form = $("#picUpdateForm")[0];
+		// FormData 객체 생성
+		var formData = new FormData(form);
+		
+		$.ajax({
+			type:"POST",
+			enctype:"multipart/form-data",
+			url:"/gallery/update",
+			data:formData,
+			processData:false,
+			contentType:false,
+			cache:false,
+			timeout:600000,
+			success: function(resp){
+				if($.type(resp)==="string"){
+					alert("Done");
+					self.close();
+					}
+			},
+			error: function(e){
+				alert("Error");
+			}
+		});
+	}
+	
+	// 페이지를 부르는 아약스 사용 함수
+	function getList(page,field,word){
+		$.ajax({
+			type:"POST",
+			url:"/gallery/list",
+			data:{"page":page,"field":field,"word":word}
+		})
+		.done(function(resp){
+		
+			var listContent ="";
+			
+			$.each(resp.list,function(key,val){
+			
+				listContent +=
+					`<div class="col-md-4">
+			          <div class="card mb-4 shadow-sm">
+			          	<img src="/resources/img/${val.artfilename}" class="img-fluid" alt="Responsive image" style="height: 225px; width: 100%;">
+			            <div class="card-body">
+			              <p class="card-text">
+			              	<span class="badge badge-info">Info</span><br>
+			              		<b>${val.arttitle}</b>
+			              </p>
+			              <div class="d-flex justify-content-between align-items-center">
+			               <div class="btn-group">
+			          		<button type="button" class="btn btn-sm btn-outline-secondary" onclick='viewGallery("${val.gnum}")'>Detail</button>
+			        	   </div>
+			               <h4><small class="text-muted">At ${val.artdate}</small></h4>
+			              </div>
+			            </div>
+			          </div>
+		       		 </div>
+	
+		       		 `;		       		  		       		 
+			});
+			$("#row").append(listContent);
+		})
+		.fail(function(e){
+			alert('error : '+e);
+		})
+	}
+	
+	// viewGallery onclick 함수
+	function viewGallery(gnum){
+		// 팝업창 주소
+		var url = "/gallery/detailPic/"+gnum;
+		// 마우스 커서 위치에 팝업창 띄우기
+		var event = window.event;
+		var Xcoor = event.screenX-100;
+		var Ycoor = event.screenY-300;
+		// 팝업창 띄우기
+		window.open(url,"",'width=1200, height=500, top ='+Ycoor+', left = '+Xcoor+', menubars=no, scrollbars=auto, location=no');
+		
+		// 비동기로 상세 보기 화면을 띄움
+/*		$.ajax({
+			type:"POST",
+			url:"/gallery/detailPic",	
+			data:{"gnum":gnum}
+		})
+		.done(function(resp){
+			// 새로운 창을 띄워서 상세 페이지를 띄운다. 받은 값들을 출력한다.
+
+		})
+		.fail(function(e){
+			alert(e);
+		});
+*/
+		
+	}
+	
+	// 스크롤 내려갈때, top 보이도록
+	$(window).scroll(function(){
+		if($(this).scrollTop()>200){
+			$('#goTop').fadeIn();
+		}else{
+			$('#goTop').fadeOut();
+		}
+	});

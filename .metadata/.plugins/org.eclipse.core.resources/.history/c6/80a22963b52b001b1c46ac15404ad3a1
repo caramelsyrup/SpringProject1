@@ -1,0 +1,9 @@
+package com.mygallery.mapper;
+
+import com.mygallery.domain.EventDTO;
+
+public interface EventMapper {
+	
+	// DB에 게시글 추가
+	public void insert(EventDTO eventDTO);
+}

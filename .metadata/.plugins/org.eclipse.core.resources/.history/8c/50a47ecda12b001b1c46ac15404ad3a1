@@ -1,0 +1,16 @@
+package com.mygallery.service;
+
+import org.springframework.stereotype.Service;
+
+import com.mygallery.domain.EventDTO;
+
+@Service
+public class EventServiceImpl implements EventService {
+
+	@Override
+	public void insert(EventDTO eventDTO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

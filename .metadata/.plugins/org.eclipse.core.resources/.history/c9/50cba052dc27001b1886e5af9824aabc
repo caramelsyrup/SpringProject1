@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.mygallery.mapper.HomeMapper">
+ 
+ 	<select id="dologin" parameterType="String" resultType="com.mygallery.domain.MemberDTO">
+ 		SELECT * FROM tbl_member WHERE username=#{username}
+ 	
+ 	</select>
+ 
+ 
+ </mapper>

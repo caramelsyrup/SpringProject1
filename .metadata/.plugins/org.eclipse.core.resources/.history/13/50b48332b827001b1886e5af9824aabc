@@ -1,0 +1,5 @@
+package com.mygallery.repository;
+
+public class MemberDAOImpl {
+
+}
